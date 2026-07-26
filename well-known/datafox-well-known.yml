@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of http://www.datafox.com/.well-known/*
+host: http://www.datafox.com
+result: none
+warning: |
+  DataFox is retired (acquired by Oracle). www.datafox.com issues a BLANKET HTTP 301 for
+  every path to https://www.oracle.com/corporate/acquisitions/datafox/ (which itself now
+  redirects on to https://www.oracle.com/cx/marketing/). A redirect-following probe
+  (curl -L) therefore reports HTTP 200 for EVERY well-known path, including paths that
+  cannot exist. Those 200s are the Oracle landing page, not discovery documents.
+  A control request for /this-path-does-not-exist-xyz returned the same 301, confirming
+  the blanket behaviour. No well-known documents are actually served.
+  Do not wire a WellKnown or SecurityTxt pointer for this provider.
+documents:
+- path: /.well-known/security.txt
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /.well-known/openid-configuration
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /.well-known/oauth-authorization-server
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /.well-known/api-catalog
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /.well-known/ai-plugin.json
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /llms.txt
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+- path: /this-path-does-not-exist-xyz
+  status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  served: false
+  role: control request proving the redirect is path-independent

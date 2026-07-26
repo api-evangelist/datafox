@@ -1,22 +1,77 @@
 aid: datafox
-name: DataFox *
-description: 'DataFox * is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment
-  pipeline.'
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/datafox.png
+name: DataFox
+description: 'DataFox was a San Francisco company-intelligence and sales-prospecting startup, backed
+  by GV among others, that used machine learning to collect and score signals about private and public
+  companies (funding rounds, hiring, news, growth signals) and delivered them to sales and marketing
+  teams through a web application, CRM integrations, and a company-data API. Oracle acquired DataFox
+  and folded its company-and-signals data into the Oracle Cloud CX / Oracle Fusion Marketing stack.
+  The independent product has been fully retired: as of this profile the datafox.com apex and www hosts
+  are served from Oracle infrastructure and every path under www.datafox.com issues a blanket HTTP 301
+  to Oracle marketing pages, while api.datafox.com and app.datafox.com resolve to a parked Oracle
+  address that accepts no connections. There is no surviving DataFox developer portal, documentation,
+  API reference, or specification to harvest, so this profile is retained as a historical/acquired
+  company record rather than an active API provider.'
 url: https://raw.githubusercontent.com/api-evangelist/datafox/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - gv
+x-status: acquired
+x-acquired-by: Oracle
 x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier-reason: acquired-no-api-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Enterprise
+- Company Data
+- Sales Intelligence
+- Data Enrichment
+- Machine Learning
+- Acquired
+- Oracle
 apis: []
+common:
+- type: Website
+  name: DataFox (www.datafox.com 301-redirects here)
+  url: https://www.oracle.com/cx/marketing/
+- type: DomainSecurity
+  name: DataFox domain security probe
+  url: security/datafox-domain-security.yml
+x-provenance:
+  probe_verified: |
+    Oracle ownership and the fully-retired surface are directly evidenced by this run's
+    probes: datafox.com is served by Oracle Cloud DNS (ns1-4.p68.dns.oraclecloud.net) with
+    an Oracle email-delivery SPF record; www.datafox.com 301s every path to
+    https://www.oracle.com/corporate/acquisitions/datafox/ (which itself now redirects on
+    to https://www.oracle.com/cx/marketing/); api. and app. resolve to a parked Oracle
+    address that accepts no connections.
+  unverified_this_run: |
+    The product-history sentences in the description (San Francisco base, ML-scored company
+    signals, web app + CRM integrations + company-data API, GV backing) come from the
+    agent's prior knowledge and the inherited vc-portfolio stub, NOT from a source fetched
+    during this pass - the WebSearch budget was exhausted before this repo was processed.
+    Treat those details as unconfirmed and re-verify on the next run that has search
+    available. The acquisition itself is confirmed by the probe evidence above.
+x-enrichment:
+  date: '2026-07-20'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -1,0 +1,61 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+note: DataFox was acquired by Oracle and the standalone product is retired. The oracle.com
+  entries are the redirect target of www.datafox.com, not a DataFox-operated surface. The
+  datafox.com entries below were probed directly and record the legacy domain's posture.
+hosts:
+- host: www.datafox.com
+  https: false
+  https_note: TLS handshake negotiates TLSv1.3 but the server returns a fatal internal
+    error alert (SSL alert 80); HTTPS is effectively unusable.
+  http: true
+  http_status: 301
+  redirects_to: https://www.oracle.com/corporate/acquisitions/datafox/
+  redirect_note: blanket redirect - every path, including /.well-known/* and /llms.txt,
+    returns the same 301, so no discovery documents are actually served.
+  server: AkamaiGHost
+  hsts: false
+- host: api.datafox.com
+  https: false
+  http: false
+  resolves: true
+  address: 192.29.111.48
+  note: parked Oracle address; connection times out, no listening service.
+- host: app.datafox.com
+  https: false
+  http: false
+  resolves: true
+  address: 192.29.111.48
+  note: parked Oracle address; connection times out, no listening service.
+- host: www.oracle.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb  7 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: datafox.com
+  dnssec: false
+  caa: []
+  spf: true
+  spf_record: v=spf1 include:spf.oracleemaildelivery.com include:rp.oracleemaildelivery.com
+    include:ap.rp.oracleemaildelivery.com include:eu.rp.oracleemaildelivery.com ~all
+  dmarc: false
+  dmarc_policy: null
+  nameservers:
+  - ns1.p68.dns.oraclecloud.net
+  - ns2.p68.dns.oraclecloud.net
+  - ns3.p68.dns.oraclecloud.net
+  - ns4.p68.dns.oraclecloud.net
+  note: domain is under Oracle Cloud DNS with Oracle email-delivery SPF, confirming
+    Oracle ownership post-acquisition. No CAA, no DMARC, no DNSSEC.
+- domain: oracle.com
+  dnssec: false
+  caa:
+  - 0 issue "letsencrypt.org"
+  - 0 issue "digicert.com"
+  - 0 issue "pki.goog"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
