@@ -51,7 +51,7 @@ tags:
 - Company Data
 - Sales Intelligence
 - Data Enrichment
-- Machine-Learning
+- Machine Learning
 - Acquired
 - Oracle
 tags_raw:
@@ -63,6 +63,7 @@ tags_raw:
 - Machine Learning
 - Acquired
 - Oracle
+- Machine-Learning
 apis: []
 common:
 - type: ParentCompany
